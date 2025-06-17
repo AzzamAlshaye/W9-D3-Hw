@@ -1,3 +1,4 @@
+// src/app.ts
 import express, { Express, Request, Response, NextFunction } from "express"
 import cors from "cors"
 import helmet from "helmet"
@@ -13,35 +14,51 @@ import {
   carRouter,
   dealerCarsRouter,
   makeCarsRouter,
+  dealerMakeCarsRouter,
 } from "./routes/Car.routes"
 import { OK, INTERNAL_SERVER_ERROR } from "./utils/http-status"
 
+// Load environment variables
 dotenv.config()
+
+// Create Express app
 const app: Express = express()
 
+// ─── Middleware ────────────────────────────────────────────────────────────────
 app.use(cors())
 app.use(helmet())
-app.use(morgan("tiny", { stream: { write: (msg) => logger.info(msg.trim()) } }))
+app.use(
+  morgan("tiny", {
+    stream: { write: (message) => logger.info(message.trim()) },
+  })
+)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+// ─── Routes ────────────────────────────────────────────────────────────────────
+// Todo list routes
 app.use("/api/lists", listRoutes)
 app.use("/api/lists/:listId/items", itemRoutes)
+
+// CarDealer and CarMake routes
 app.use("/api/dealers", dealerRouter)
 app.use("/api/carmakes", makeRouter)
+
+// Car routes
 app.use("/api/cars", carRouter)
 app.use("/api/dealers/:dealerId/cars", dealerCarsRouter)
 app.use("/api/carmakes/:carMakeId/cars", makeCarsRouter)
+app.use("/api/dealers/:dealerId/carmakes/:carMakeId/cars", dealerMakeCarsRouter)
 
-// Welcome endpoint
+// Health check endpoint
 app.get("/", (_req: Request, res: Response<{ message: string }>): void => {
   res.status(OK).json({ message: "API is running!" })
 })
 
-// Error handler
+// ─── Error Handling ────────────────────────────────────────────────────────────
 app.use(
   (err: Error, _req: Request, res: Response, _next: NextFunction): void => {
-    logger.error(err.message)
+    logger.error("Error:", err.message)
     res.status(INTERNAL_SERVER_ERROR).json({
       success: false,
       message: "Something went wrong!",
@@ -50,4 +67,7 @@ app.use(
   }
 )
 
-app.listen(port, () => logger.info(`Server running on port ${port}`))
+// ─── Start Server ──────────────────────────────────────────────────────────────
+app.listen(port, () => {
+  logger.info(`Server is running on port ${port}`)
+})
