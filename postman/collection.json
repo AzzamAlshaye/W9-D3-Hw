@@ -1,240 +1,437 @@
 {
-	"info": {
-		"_postman_id": "random-uuid",
-		"name": "02-REST",
-		"description": "REST API collection for the Todo application",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Lists",
-			"item": [
-				{
-					"name": "Create List",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"title\": \"My Todo List\",\n    \"description\": \"A list of tasks to complete\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/lists",
-							"host": ["http://localhost:3000"],
-							"path": ["api", "lists"]
-						},
-						"description": "Create a new todo list"
-					}
-				},
-				{
-					"name": "Get All Lists",
-					"request": {
-						"method": "GET",
-						"url": {
-							"raw": "http://localhost:3000/api/lists",
-							"host": ["http://localhost:3000"],
-							"path": ["api", "lists"]
-						},
-						"description": "Get all todo lists"
-					}
-				},
-				{
-					"name": "Get List by ID",
-					"request": {
-						"method": "GET",
-						"url": {
-							"raw": "http://localhost:3000/api/lists/:id",
-							"host": ["http://localhost:3000"],
-							"path": ["api", "lists", ":id"],
-							"variable": [
-								{
-									"key": "id",
-									"value": "list-id-here"
-								}
-							]
-						},
-						"description": "Get a specific todo list by ID"
-					}
-				},
-				{
-					"name": "Update List",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"title\": \"Updated List Title\",\n    \"description\": \"Updated description\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/lists/:id",
-							"host": ["http://localhost:3000"],
-							"path": ["api", "lists", ":id"],
-							"variable": [
-								{
-									"key": "id",
-									"value": "list-id-here"
-								}
-							]
-						},
-						"description": "Update a todo list"
-					}
-				},
-				{
-					"name": "Delete List",
-					"request": {
-						"method": "DELETE",
-						"url": {
-							"raw": "http://localhost:3000/api/lists/:id",
-							"host": ["http://localhost:3000"],
-							"path": ["api", "lists", ":id"],
-							"variable": [
-								{
-									"key": "id",
-									"value": "list-id-here"
-								}
-							]
-						},
-						"description": "Delete a todo list and all its items"
-					}
-				}
-			]
-		},
-		{
-			"name": "Items",
-			"item": [
-				{
-					"name": "Create Item",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"title\": \"New Todo Item\",\n    \"description\": \"Item description\",\n    \"completed\": false\n}"
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/lists/:listId/items",
-							"host": ["http://localhost:3000"],
-							"path": ["api", "lists", ":listId", "items"],
-							"variable": [
-								{
-									"key": "listId",
-									"value": "list-id-here"
-								}
-							]
-						},
-						"description": "Create a new item in a todo list"
-					}
-				},
-				{
-					"name": "Get List Items",
-					"request": {
-						"method": "GET",
-						"url": {
-							"raw": "http://localhost:3000/api/lists/:listId/items",
-							"host": ["http://localhost:3000"],
-							"path": ["api", "lists", ":listId", "items"],
-							"variable": [
-								{
-									"key": "listId",
-									"value": "list-id-here"
-								}
-							]
-						},
-						"description": "Get all items in a todo list"
-					}
-				},
-				{
-					"name": "Get Item",
-					"request": {
-						"method": "GET",
-						"url": {
-							"raw": "http://localhost:3000/api/lists/:listId/items/:id",
-							"host": ["http://localhost:3000"],
-							"path": ["api", "lists", ":listId", "items", ":id"],
-							"variable": [
-								{
-									"key": "listId",
-									"value": "list-id-here"
-								},
-								{
-									"key": "id",
-									"value": "item-id-here"
-								}
-							]
-						},
-						"description": "Get a specific item from a todo list"
-					}
-				},
-				{
-					"name": "Update Item",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"title\": \"Updated Item Title\",\n    \"description\": \"Updated item description\",\n    \"completed\": true\n}"
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/lists/:listId/items/:id",
-							"host": ["http://localhost:3000"],
-							"path": ["api", "lists", ":listId", "items", ":id"],
-							"variable": [
-								{
-									"key": "listId",
-									"value": "list-id-here"
-								},
-								{
-									"key": "id",
-									"value": "item-id-here"
-								}
-							]
-						},
-						"description": "Update an item in a todo list"
-					}
-				},
-				{
-					"name": "Delete Item",
-					"request": {
-						"method": "DELETE",
-						"url": {
-							"raw": "http://localhost:3000/api/lists/:listId/items/:id",
-							"host": ["http://localhost:3000"],
-							"path": ["api", "lists", ":listId", "items", ":id"],
-							"variable": [
-								{
-									"key": "listId",
-									"value": "list-id-here"
-								},
-								{
-									"key": "id",
-									"value": "item-id-here"
-								}
-							]
-						},
-						"description": "Delete an item from a todo list"
-					}
-				}
-			]
-		}
-	]
-} 
+  "info": {
+    "_postman_id": "random-uuid",
+    "name": "02-REST",
+    "description": "REST API collection for the Todo application and Car dealership services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Lists",
+      "item": [
+        {
+          "name": "Create List",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"My Todo List\",\n    \"description\": \"A list of tasks to complete\",\n    \"createdAt\": \"{{currentDate}}\",\n    \"updatedAt\": \"{{currentDate}}\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/lists",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "lists"]
+            },
+            "description": "Create a new todo list"
+          }
+        },
+        {
+          "name": "Get All Lists",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/lists",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "lists"]
+            }
+          },
+          "description": "Get all todo lists"
+        },
+        {
+          "name": "Get List by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/lists/:id",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "lists", ":id"],
+              "variable": [{ "key": "id", "value": "list-id-here" }]
+            },
+            "description": "Get a specific todo list by ID"
+          }
+        },
+        {
+          "name": "Update List",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Updated List Title\",\n    \"description\": \"Updated description\",\n    \"updatedAt\": \"{{currentDate}}\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/lists/:id",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "lists", ":id"],
+              "variable": [{ "key": "id", "value": "list-id-here" }]
+            },
+            "description": "Update a todo list"
+          }
+        },
+        {
+          "name": "Delete List",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/api/lists/:id",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "lists", ":id"],
+              "variable": [{ "key": "id", "value": "list-id-here" }]
+            },
+            "description": "Delete a todo list and all its items"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Items",
+      "item": [
+        {
+          "name": "Create Item",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"New Todo Item\",\n    \"description\": \"Item description\",\n    \"completed\": false,\n    \"createdAt\": \"{{currentDate}}\",\n    \"updatedAt\": \"{{currentDate}}\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/lists/:listId/items",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "lists", ":listId", "items"],
+              "variable": [{ "key": "listId", "value": "list-id-here" }]
+            },
+            "description": "Create a new item in a todo list"
+          }
+        },
+        {
+          "name": "Get List Items",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/lists/:listId/items",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "lists", ":listId", "items"],
+              "variable": [{ "key": "listId", "value": "list-id-here" }]
+            }
+          },
+          "description": "Get all items in a todo list"
+        },
+        {
+          "name": "Get Item",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/lists/:listId/items/:id",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "lists", ":listId", "items", ":id"],
+              "variable": [
+                { "key": "listId", "value": "list-id-here" },
+                { "key": "id", "value": "item-id-here" }
+              ]
+            }
+          },
+          "description": "Get a specific item from a todo list"
+        },
+        {
+          "name": "Update Item",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Updated Item Title\",\n    \"description\": \"Updated item description\",\n    \"completed\": true,\n    \"updatedAt\": \"{{currentDate}}\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/lists/:listId/items/:id",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "lists", ":listId", "items", ":id"],
+              "variable": [
+                { "key": "listId", "value": "list-id-here" },
+                { "key": "id", "value": "item-id-here" }
+              ]
+            }
+          },
+          "description": "Update an item in a todo list"
+        },
+        {
+          "name": "Delete Item",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/api/lists/:listId/items/:id",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "lists", ":listId", "items", ":id"],
+              "variable": [
+                { "key": "listId", "value": "list-id-here" },
+                { "key": "id", "value": "item-id-here" }
+              ]
+            }
+          },
+          "description": "Delete an item from a todo list"
+        }
+      ]
+    },
+    {
+      "name": "Dealers",
+      "item": [
+        {
+          "name": "Create Dealer",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Dealer Name\",\n    \"email\": \"dealer@example.com\",\n    \"city\": \"City Name\",\n    \"createdAt\": \"{{currentDate}}\",\n    \"updatedAt\": \"{{currentDate}}\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/dealers",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "dealers"]
+            }
+          },
+          "description": "Create a new dealer"
+        },
+        {
+          "name": "Get All Dealers",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/dealers",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "dealers"]
+            }
+          },
+          "description": "Get all dealers"
+        },
+        {
+          "name": "Get Dealer by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/dealers/:id",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "dealers", ":id"],
+              "variable": [{ "key": "id", "value": "dealer-id-here" }]
+            }
+          },
+          "description": "Get a dealer by id"
+        },
+        {
+          "name": "Update Dealer",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Updated Dealer Name\",\n    \"email\": \"updated@example.com\",\n    \"city\": \"Updated City\",\n    \"updatedAt\": \"{{currentDate}}\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/dealers/:id",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "dealers", ":id"],
+              "variable": [{ "key": "id", "value": "dealer-id-here" }]
+            }
+          },
+          "description": "Update a dealer by id"
+        },
+        {
+          "name": "Delete Dealer",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/api/dealers/:id",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "dealers", ":id"],
+              "variable": [{ "key": "id", "value": "dealer-id-here" }]
+            }
+          },
+          "description": "Delete a dealer by id"
+        }
+      ]
+    },
+    {
+      "name": "CarMakes",
+      "item": [
+        {
+          "name": "Create CarMake",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"country\": \"Country\",\n    \"brand\": \"Brand\",\n    \"createdAt\": \"{{currentDate}}\",\n    \"updatedAt\": \"{{currentDate}}\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/carmakes",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "carmakes"]
+            }
+          },
+          "description": "Create a new car make"
+        },
+        {
+          "name": "Get All CarMakes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/carmakes",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "carmakes"]
+            }
+          },
+          "description": "Get all car makes"
+        },
+        {
+          "name": "Get CarMake by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/carmakes/:id",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "carmakes", ":id"],
+              "variable": [{ "key": "id", "value": "carmake-id-here" }]
+            }
+          },
+          "description": "Get a car make by id"
+        },
+        {
+          "name": "Update CarMake",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"country\": \"Updated Country\",\n    \"brand\": \"Updated Brand\",\n    \"updatedAt\": \"{{currentDate}}\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/carmakes/:id",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "carmakes", ":id"],
+              "variable": [{ "key": "id", "value": "carmake-id-here" }]
+            }
+          },
+          "description": "Update a car make by id"
+        },
+        {
+          "name": "Delete CarMake",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/api/carmakes/:id",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "carmakes", ":id"],
+              "variable": [{ "key": "id", "value": "carmake-id-here" }]
+            }
+          },
+          "description": "Delete a car make by id"
+        }
+      ]
+    },
+    {
+      "name": "Cars",
+      "item": [
+        {
+          "name": "Create Car",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"dealerId\": \"dealer-id-here\",\n    \"carMakeId\": \"carmake-id-here\",\n    \"name\": \"Car Name\",\n    \"price\": 25000,\n    \"year\": 2023,\n    \"color\": \"Color\",\n    \"wheelsCount\": 4,\n    \"createdAt\": \"{{currentDate}}\",\n    \"updatedAt\": \"{{currentDate}}\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/cars",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "cars"]
+            }
+          },
+          "description": "Create a new car"
+        },
+        {
+          "name": "Get All Cars",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/cars",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "cars"]
+            }
+          },
+          "description": "Get all cars"
+        },
+        {
+          "name": "Get Cars by Dealer",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/dealers/:dealerId/cars",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "dealers", ":dealerId", "cars"],
+              "variable": [{ "key": "dealerId", "value": "dealer-id-here" }]
+            }
+          },
+          "description": "Get all cars for a specific dealer"
+        },
+        {
+          "name": "Get Cars by CarMake",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/carmakes/:carmakeId/cars",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "carmakes", ":carmakeId", "cars"],
+              "variable": [{ "key": "carmakeId", "value": "carmake-id-here" }]
+            }
+          },
+          "description": "Get all cars for a specific car make"
+        },
+        {
+          "name": "Get Car by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/cars/:id",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "cars", ":id"],
+              "variable": [{ "key": "id", "value": "car-id-here" }]
+            }
+          },
+          "description": "Get a specific car by id"
+        },
+        {
+          "name": "Update Car",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Updated Car Name\",\n    \"price\": 30000,\n    \"year\": 2024,\n    \"color\": \"New Color\",\n    \"wheelsCount\": 4,\n    \"updatedAt\": \"{{currentDate}}\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/cars/:id",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "cars", ":id"],
+              "variable": [{ "key": "id", "value": "car-id-here" }]
+            }
+          },
+          "description": "Update a car by id"
+        },
+        {
+          "name": "Delete Car",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/api/cars/:id",
+              "host": ["http://localhost:3000"],
+              "path": ["api", "cars", ":id"],
+              "variable": [{ "key": "id", "value": "car-id-here" }]
+            }
+          },
+          "description": "Delete a car by id"
+        }
+      ]
+    }
+  ]
+}
