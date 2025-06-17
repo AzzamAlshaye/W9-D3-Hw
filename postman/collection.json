@@ -339,7 +339,7 @@
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Car Name\",\n  \"price\": 25000,\n  \"year\": 2023,\n  \"color\": \"Color\",\n  \"wheelsCount\": 4,\n  \"createdAt\": \"{{currentDate}}\",\n  \"updatedAt\": \"{{currentDate}}\"\n}"
+              "raw": "{\n  \"name\": \"Car Name\",\n  \"price\": 25000,\n  \"year\": 2025,\n  \"color\": \"Color\",\n  \"wheelsCount\": 4,\n  \"createdAt\": \"{{currentDate}}\",\n  \"updatedAt\": \"{{currentDate}}\"\n}"
             },
             "url": {
               "raw": "http://localhost:3000/api/dealers/:dealerId/carmakes/:carMakeId/cars",
